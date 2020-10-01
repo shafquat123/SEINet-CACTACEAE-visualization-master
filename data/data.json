@@ -1,0 +1,64 @@
+[
+ [
+    {
+      "imgname": "Cylindropuntia_bigelovii",
+      "name":"Cylindropuntia bigelovii",
+      "genus": "Cylindropuntia",
+      "country": "USA",
+      "state": "New Mexico",
+      "county": "Mora",
+      "ref": "http://swbiodiversity.org/seinet/collections/individual/index.php?occid=716911",
+      "value": 90
+    },
+    {
+      "imgname": "Opuntia_toumeyi",
+      "name":"Opuntia toumeyi", 
+      "genus": "Cylindropuntia",
+      "country": "USA",
+      "state": "Arizona",
+      "county": "Maricopa",
+      "ref": "http://swbiodiversity.org/seinet/collections/individual/index.php?occid=716911",
+      "value": 70
+    },
+    {
+      "imgname": "Echinocereus_bacanorensis",
+      "name":"Echinocereus bacanorensis",
+      "genus": "Cylindropuntia",
+      "country": "USA",
+      "state": "Arizona",
+      "county": "Maricopa",
+      "ref": "http://swbiodiversity.org/seinet/collections/individual/index.php?occid=716911",
+      "value": 60
+    },
+    {
+      "imgname": "Dendrocereus_undulosus",
+      "name":"Dendrocereus undulosus",
+      "genus": "Cylindropuntia",
+      "country": "USA",
+      "state": "California",
+      "county": "Kern",
+      "ref": "http://swbiodiversity.org/seinet/collections/individual/index.php?occid=716911",
+      "value": 30
+    },
+    {
+      "imgname": "Coryphantha_durangensis",
+      "name":"Coryphantha durangensis",
+      "genus": "Cylindropuntia",
+      "country": "Mexico",
+      "state": "Sonora",
+      "county": "Hermosillo",
+      "ref": "http://swbiodiversity.org/seinet/collections/individual/index.php?occid=716911",
+      "value": 90
+    },
+    {
+      "imgname": "Rhipsalis_paradoxa",
+      "name":"Rhipsalis paradoxa",
+      "genus": "Cylindropuntia",
+      "country": "USA",
+      "state": "Utah",
+      "county": "Kern",
+      "ref": "http://swbiodiversity.org/seinet/collections/individual/index.php?occid=716911",
+      "value": 90
+    }
+  ]
+]

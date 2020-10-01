@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<head>
+  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://d3js.org/d3.v3.min.js"></script>
+  <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+
+
+<style>
+
+path:hover {
+	fill-opacity: .7;
+}
+
+/* Style for Custom Tooltip */
+div.tooltip {   
+ 	position: absolute;           
+	text-align: center;           
+	width: 60px;                  
+	height: 28px;                 
+	padding: 2px;             
+	font: 12px sans-serif;        
+	background: white;   
+	border: 0px;      
+	border-radius: 8px;           
+	pointer-events: none;         
+}
+
+body {
+  background-color: rgb(241, 230, 221)    
+}
+.axis {
+	font: 15px sans-serif;
+}
+
+.container {
+  float: left;
+}
+
+#container1{
+  float: left;
+  width: 100%;
+}
+
+.bg1-dark{
+  background-color: rgba(241, 113, 5) ;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #D4D8DA;
+  stroke-width: 2px;
+  shape-rendering: crispEdges;
+}
+#chart {
+	position: absolute;
+	top: 40px;
+	left: 10px;
+}
+
+li{
+  padding-right: 40px;
+  padding-left: 40px;
+}
+#head{
+  position: absolute;
+  top: 90px;
+  
+}
+</style>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="RadarChart.js"></script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg1-dark fixed-top">
+    <div class="container">
+      
+        <a class="navbar-brand" href="#Introduction">SEINet Data Visualization </a>
+        <!-- <img src = "cactus1.png" height="35" width="35"> -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="Main.html">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Visualization</a>
+                </li>
+          
+            </ul>
+        </div>
+    </div>
+</nav>
+<div id="head">
+<!-- <h3>[Title of the chart]</h3> -->
+</div>
+<div id="chart"></div>
+  
+<script>
+var width = 300,
+    height = 300;
+
+// Config for the Radar chart
+var config = {
+    w: width,
+    h: height,
+    maxValue: 100,
+    levels: 5,
+    ExtraWidthX: 300
+}
+
+//Call function to draw the Radar chart
+d3.json("data/data.json", function(error, data) {
+    if (error) throw error;
+    RadarChart.draw("#chart", data, config);
+});
+
+var svg = d3.select('body')
+	.selectAll('svg')
+	.append('svg')
+	.attr("width", width)
+	.attr("height", height);
+</script>
+</body>

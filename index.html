@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<head>
+    <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://d3js.org/topojson.v0.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/queue.v1.min.js"></script>
+    <script src="https://d3js.org/topojson.v1.min.js"></script>
+    <script>
+        var filename;
+        function drawchart(data) {
+            console.log(data);
+            SpiderChart.draw("#viz-5", data, config);
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("screen2").style.display = 'none';
+            document.getElementById("loader").style.display = 'none';
+            document.getElementById("home").onclick = function() {
+                screen1 = document.getElementById("screen1");
+                screen2 = document.getElementById("screen2");
+                loader = document.getElementById("loader");
+                screen1.style.display = 'block';
+                screen2.style.display = 'none';
+                loader.style.display = 'none';
+            }
+
+            document.getElementById("custom-file").onchange = function(path) {
+                filename = this.value.split('\\').pop().split('/').pop();
+                this.value= '';
+                document.getElementsByClassName('.custom-file-label"').innerHTML = filename;
+                document.getElementById("screen2").style.display = 'none';
+                document.getElementById("loader").style.display = 'block';
+                document.getElementById("screen1").style.display = 'none';
+                var xmlhttp = new XMLHttpRequest();
+                var url = "http://127.0.0.1:8001/images?path=" + filename;
+                console.log("url", url);
+                xmlhttp.open("GET", url, true);
+                xmlhttp.onreadystatechange = function(response) {
+                console.log(xmlhttp.status);
+                console.log(xmlhttp.statusText);
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    var obj = JSON.parse(xmlhttp.responseText);
+                    drawchart(obj);
+                    screen2 = document.getElementById("screen2");
+                    document.getElementById("loader").style.display = 'none';
+                    screen2.style.display = 'block';
+                }
+                };
+                xmlhttp.onerror = function (e) {
+                console.error(xmlhttp.statusText);
+                };
+                xmlhttp.send();
+            }
+        });
+    </script>
+</head>
+<body>
+    <div id="navbar-div" class="row">
+        <div id="nav-bar" class="col-md-12 col-lg-12">
+            <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+                <div class="col-md-1 col-lg-1">
+                    <i id="home" class="fa fa-home home"></i>
+                </div>
+                <div class="col-md-3 col-lg-3"></div>
+                <div class="col-md-4 col-lg-4">
+                    <form class="custom-file">
+                        <input type="file" class="custom-file-input" id="custom-file">
+                        <label class="custom-file-label" for="customFile">Upload an image to find your cactus</label>
+                    </form>
+                </div>
+                <div class="col-md-4 col-lg-4"></div>
+              </nav>
+        </div>
+    </div>
+    <div class= "banner">
+      <img src= "images/cactae1.jpg">
+    </div>
+    <p class="title-class" style = "padding-top:20px;">Welcome to the SEINet Cactaceae Dashboard project! We present a series of interactive visualizations to provide a holistic view of the dataset for North America.</p>
+    <p class="title-class"> Hover on the different elements to view more details about each species.
+    <hr>
+    <div id="screen1">
+      <h2 class="title-class">Summary of cacti distribution over North America</h2>
+        <div id="na-map-div" class="row na-map">
+            <div id="map1" class="col-md-12 col-lg-12"><div id="info"></div></div>
+        </div>
+        <hr>
+        <h2 class="title-class"> Overview of cacti density throughout the United States by county</h2>
+        <div id="chart-div-1" class="row chart-div">
+            <div id="viz-1" class="col-md-12 col-lg-12 "></div>
+        </div>
+      <hr>
+        <h2 class="title-class">Time series aggregation of number of cacti species identified each year</h2>
+        <div id="chart-div-2" class="row chart-div">
+            <div id="viz-2" class="col-md-12 col-lg-12 ">
+              <div class="g-chart"></div>
+            </div>
+        </div>
+        <hr>
+        <h2 class="title-class">Clusters of cacti grouped by specific genus</h2>
+        <div id="chart-div-7" class="row chart-div">
+            <div id="viz-7" class="col-md-12 col-lg-12 "></div>
+        </div>
+        <hr>
+        <h2 class="title-class">Tree map to identify most common species of cacti genus</h2>
+        <div id="chart-div-3" class="row chart-div">
+            <div id="viz-3" class="col-md-12 col-lg-12 ">
+              <div class='tableauPlaceholder' id='viz1587931794125' style='position: relative'>
+                  <noscript>
+                      <a href='#'>
+                          <img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;DV&#47;DVproj&#47;Sheet1&#47;1_rss.png' style='border: none' />
+                      </a></noscript>
+                      <object class='tableauViz'  style='display:none;'>
+                          <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+                          <param name='embed_code_version' value='3' />
+                          <param name='site_root' value='' />
+                          <param name='name' value='DVproj&#47;Sheet1' />
+                          <param name='tabs' value='no' />
+                          <param name='toolbar' value='yes' />
+                          <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;DV&#47;DVproj&#47;Sheet1&#47;1.png' />
+                          <param name='animate_transition' value='yes' />
+                          <param name='display_static_image' value='yes' />
+                          <param name='display_spinner' value='yes' />
+                          <param name='display_overlay' value='yes' />
+                          <param name='display_count' value='yes' />
+                      </object>
+                  </div>
+
+                  <script type='text/javascript'>
+                  var divElement = document.getElementById('viz1587931794125');
+                  var vizElement = divElement.getElementsByTagName('object')[0];
+                  vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';
+                  var scriptElement = document.createElement('script');
+                  scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+                  vizElement.parentNode.insertBefore(scriptElement, vizElement);
+                  </script>
+            </div>
+        </div>
+        <hr>
+        <h2 class="title-class">Density of cacti based on elevation from sea level</h2>
+        <div id="chart-div-4" class="row chart-div">
+            <div id="viz-4" class="col-md-12 col-lg-12 ">
+                <iframe id= "ifrm" src="bubbleChart/bubbleChart.html" onload="setIframeHeight(this.id)" frameBorder="0" class = "iframe" ></iframe>
+            </div>
+        </div>
+
+    </div>
+    <div id = "loader" class="loader"></div>
+    <div id="screen2">
+        <div id="chart-div-5" class="row chart-div">
+            <div id="viz-5" class="col-md-6 col-lg-6 chart-div-left"></div>
+            <div id="viz-6" class="col-md-6 col-lg-6 chart-div-right"></div>
+        </div>
+    </div>
+    <script>
+    function getDocHeight(doc) {
+      doc = doc || document;
+      // stackoverflow.com/questions/1145850/
+      var body = doc.body, html = doc.documentElement;
+      var height = Math.max( body.scrollHeight, body.offsetHeight,
+          html.clientHeight, html.scrollHeight, html.offsetHeight );
+      return height;
+      }
+      function getDocWidth(doc) {
+        doc = doc || document;
+        // stackoverflow.com/questions/1145850/
+        var body = doc.body, html = doc.documentElement;
+        var height = Math.max( body.scrollWidth, body.offsetWidth,
+            html.clientWidth, html.scrollWidth, html.offsetWidth );
+        return height;
+        }
+      function setIframeHeight(id) {
+          var ifrm = document.getElementById(id);
+          var doc = ifrm.contentDocument? ifrm.contentDocument:
+              ifrm.contentWindow.document;
+          ifrm.style.visibility = 'hidden';
+          ifrm.style.height = "10px"; // reset to minimal height ...
+          // IE opt. for bing/msn needs a bit added or scrollbar appears
+          ifrm.style.height = getDocHeight( doc ) + 4 + "px";
+          ifrm.style.width = getDocWidth( doc ) + "px";
+          ifrm.style.visibility = 'visible';
+      }
+    </script>
+    <script src="./javascript/similaritychart.js"></script>
+    <script src="./javascript/northAmerica.js"></script>
+    <script src="./javascript/world_state.js"></script>
+    <script src="./javascript/networkNode.js"></script>
+    <script src="./javascript/chloro.js"></script>
+    <script src="./javascript/timeseries.js"></script>
+    <script src="./javascript/screen2.js"></script>
+</body>
